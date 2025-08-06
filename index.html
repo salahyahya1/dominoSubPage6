@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>دومينوز - اشترك الآن</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Cairo', sans-serif;
+      }
+
+      body {
+        background: linear-gradient(#f9f3e9, #fffaf0);
+        color: #4b371c;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        padding: 1rem;
+        text-align: center;
+      }
+
+      .container {
+        background-color: #fff5e0;
+        padding: 2rem;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+      }
+
+      h1 {
+        margin-bottom: 1rem;
+        font-size: 2rem;
+        color: #b3541e;
+      }
+
+      p {
+        margin-bottom: 1.5rem;
+        font-size: 1rem;
+        color: #6b4f28;
+      }
+
+      input[type="tel"] {
+        width: 100%;
+        padding: 0.75rem;
+        border: 2px solid #d8b97c;
+        border-radius: 8px;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        direction: ltr;
+      }
+
+      button {
+        width: 100%;
+        padding: 0.75rem;
+        background-color: #b3541e;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #944211;
+      }
+
+      .otp-page {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .otp-input {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin: 1rem 0;
+      }
+
+      .otp-input input {
+        width: 2.5rem;
+        height: 2.5rem;
+        text-align: center;
+        font-size: 1.2rem;
+        border: 2px solid #d8b97c;
+        border-radius: 6px;
+      }
+
+      .terms-box {
+        text-align: right;
+        font-size: 0.9rem;
+        color: #6b4f28;
+        margin-bottom: 1rem;
+      }
+
+      .terms-box label {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+
+      .info-text {
+        font-size: 0.9rem;
+        color: #6b4f28;
+        margin-top: 1rem;
+        line-height: 1.6;
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" id="signupPage">
+      <h1>دومينوز</h1>
+      <p>اكتب رقمك وخلي اللعب يبتدي!</p>
+      <input
+        type="tel"
+        id="phoneInput"
+        placeholder="078XXXXXXXX"
+        maxlength="11"
+      />
+
+      <div class="terms-box">
+        <label>
+          <input type="checkbox" id="termsCheckbox" required />
+          <span>بالتسجيل، أنت توافق على <strong>الشروط والأحكام</strong>.</span>
+        </label>
+      </div>
+
+      <button onclick="showOtpPage()">خليني ألعب</button>
+
+      <div class="info-text">
+        <p>📌 سيحصل المشتركين الجدد لأول مرة على يوم واحد مجاني.</p>
+        <p>💰 كلفة الاشتراك 240 دينار يومياً.</p>
+        <p>📴 لإلغاء الاشتراك، أرسل D5 إلى 3368.</p>
+        <p>📞 للحصول على أي معلومات، يرجى الاتصال بنا.</p>
+        <p>🌍 هذا المحتوى متاح لمستخدمي <strong>العراق فقط</strong>.</p>
+      </div>
+    </div>
+
+    <div class="container otp-page" id="otpPage">
+      <h1>رمز التفعيل</h1>
+      <p>دخلنا الرمز اللي وصل رقمك</p>
+      <div class="otp-input">
+        <input type="text" maxlength="1" />
+        <input type="text" maxlength="1" />
+        <input type="text" maxlength="1" />
+        <input type="text" maxlength="1" />
+      </div>
+      <button onclick="alert('تم التفعيل!')">تأكيد</button>
+    </div>
+
+    <script>
+      function showOtpPage() {
+        const phone = document.getElementById("phoneInput").value;
+        const agreed = document.getElementById("termsCheckbox").checked;
+
+        if (!phone || phone.length < 10) {
+          alert("من فضلك ادخل رقم صحيح");
+          return;
+        }
+
+        if (!agreed) {
+          alert("يجب الموافقة على الشروط والأحكام أولاً");
+          return;
+        }
+
+        document.getElementById("signupPage").style.display = "none";
+        document.getElementById("otpPage").style.display = "flex";
+      }
+    </script>
+  </body>
+</html>
